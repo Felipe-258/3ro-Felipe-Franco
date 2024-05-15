@@ -25,6 +25,7 @@ class UpdateStudentRequest extends FormRequest
             'dni' => 'required|integer|',
             'name' => 'required|string|max:250',
             'surname' => 'required|string|max:250',
+            'birth'=> 'required',
             'assist' => 'required|min:1',
         ];
     }

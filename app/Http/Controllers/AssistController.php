@@ -14,18 +14,19 @@ use Illuminate\Validation\Rule;
 
 class AssistController extends Controller
 {
-    public function search (Request $request)
+    public function search(Request $request)
     {
         /* dd($request); */
         $request->validate([
             'dni' => 'required|integer|exists:students,dni',
         ]);
-        
+
         $student = Student::where('dni', $request->dni)->first();
 
         /* return route('students.show', $student->id); */
         return redirect()->action(
-            [StudentController::class, 'show'], ['student' => $student->id]
+            [StudentController::class, 'show'],
+            ['student' => $student->id]
         );
     }
     public function show(Student $student): View
@@ -42,7 +43,7 @@ class AssistController extends Controller
             $color = 'blue';
         }
         if ($promedio >= 80) {
-            $color = 'green'; 
+            $color = 'green';
         }
         /* dd($assists); */
         //           carpeta  archivo
@@ -55,23 +56,32 @@ class AssistController extends Controller
         ]);
     }
     public function store(Request $request)
-{
-    /* dd($request); */
-    $request->validate([
-        'dni' => 'required|integer|exists:students,dni',
-    ]);
-    // Verifica si el estudiante existe sino, lanza una excepción
-    /* $student = Student::findOrFail($request->input('student_id')); */
-    $student = Student::where('dni', $request->dni)->first();
-    /* dd($student); */
-    $newAssist = new Assist();
-    $newAssist->student_id = $student->id;
-    $newAssist->assist = now();
-    $newAssist->save();
-    Student::where('dni', $request->dni)
-    
-    ->update(['assist' => $student->assist + 1]);
-    return redirect()->route('students.index')
-        ->withSuccess('New Assist registered successfully.');
-}
+    {
+        /* dd($request); */
+        $request->validate([
+            'dni' => 'required|integer|exists:students,dni',
+        ]);
+        // Verifica si el estudiante existe sino, lanza una excepción
+        /* $student = Student::findOrFail($request->input('student_id')); */
+        $student = Student::where('dni', $request->dni)->first();
+        $now = now();
+        $hoy = substr($now, 0, 10);
+
+        $assist = DB::select("select * from assists where student_id = $student->id and DATE(assist) = ?", [$hoy]);
+        /* dd($assist); */
+        if ($assist) {
+            return redirect()->back()->with('message', "Error. The student assistant is already registered total.");            
+        } else {
+            
+            $newAssist = new Assist();
+            $newAssist->student_id = $student->id;
+            $newAssist->assist = now();
+            $newAssist->save();
+            Student::where('dni', $request->dni)
+                ->update(['assist' => $student->assist + 1]);
+            return redirect()->route('students.index')
+                ->withSuccess('New Assist registered successfully.');
+        }
+
+    }
 }

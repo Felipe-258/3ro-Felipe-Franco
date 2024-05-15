@@ -97,4 +97,7 @@
             </div>
         </div>
     </div>
+    @if(session()->has('message'))
+                <p class="alert alert-danger"> {{ session()->get('message') }}</p>
+                @endif
 </nav>

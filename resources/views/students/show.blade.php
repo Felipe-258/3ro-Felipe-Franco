@@ -40,6 +40,13 @@
                     </div>
 
                     <div class="row">
+                        <label for="birth"
+                            class="col-md-4 col-form-label text-md-end text-start"><strong>birth:</strong></label>
+                        <div class="col-md-6" style="line-height: 35px;">
+                            {{ $student->birth }}
+                        </div>
+                    </div>
+                    <div class="row">
                         <label for="assist"
                             class="col-md-4 col-form-label text-md-end text-start"><strong>assist:</strong></label>
                         <div class="col-md-6" style="line-height: 35px;">

@@ -20,6 +20,7 @@ class StudentFactory extends Factory
             "dni"=>$this->faker->unique()->numberBetween(1,100),
             "name"=> $this->faker->firstName(),
             "surname"=> $this->faker->lastName(),
+            "birth"=> $this->faker->date(),
             "assist"=>$this->faker->numberBetween(0,0),
         ];
     }

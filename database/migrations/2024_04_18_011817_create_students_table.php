@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('dni');
             $table->string('name');
             $table->string('surname');
+            $table->date('birth');
             $table->integer('assist');
             $table->timestamps();
         });

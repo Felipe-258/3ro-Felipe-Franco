@@ -10,7 +10,7 @@ class Student extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'dni', 'name', 'surname', 'assist', '_token',
+        'dni', 'name', 'surname', 'birth', 'assist', '_token',
     ];
     public function assists()
     {
