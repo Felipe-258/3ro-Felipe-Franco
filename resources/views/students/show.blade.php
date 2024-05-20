@@ -43,7 +43,7 @@
                         <label for="birth"
                             class="col-md-4 col-form-label text-md-end text-start"><strong>birth:</strong></label>
                         <div class="col-md-6" style="line-height: 35px;">
-                            {{ $student->birth }}
+                            {{ date("d-m-y", strtotime($student->birth)) }}
                         </div>
                     </div>
                     <div class="row">

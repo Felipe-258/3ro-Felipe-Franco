@@ -20,18 +20,20 @@
                         <a href="{{ route('assist.form') }}" class="btn btn-success btn-sm my-3"><i
                                 class="bi bi-plus-circle"></i> Add New Assist</a>
                         <a href="{{ route('assist.form') }}" class="btn btn-success btn-sm my-3"><i
-                            class="bi bi-plus-circle"></i> Add New Note</a>
+                                class="bi bi-plus-circle"></i> Add New Note</a>
                         {{-- <div class="button">
                             <div class="separador"></div>
                         </div> --}}
-                        
+
 
                         <div class="button">
-                            
+
                             <form action="{{ route('assistForm.store') }}" method="post">
                                 @csrf
                                 <div class="row">
-                                    <label for="dni" class="fuente col-md-6  col-form-label text-md-end text-start ">Asistencia Rapida</label>
+                                    <label for="dni"
+                                        class="fuente col-md-6  col-form-label text-md-end text-start ">Asistencia
+                                        Rapida</label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control " id="dni" name="dni"
                                             placeholder="dni">
@@ -49,8 +51,8 @@
                             </div>
                             </form>
                         </div>
-                    </div> 
-                
+                    </div>
+
 
 
                     <table class="table table-striped table-bordered">
@@ -77,6 +79,7 @@
                                             @csrf
                                             @method('DELETE')
 
+
                                             <a href="{{ route('assist.show', $student->id) }}"
                                                 class="btn btn-success btn-sm"><i class="bi bi-journal-text"></i>
                                                 Assists</a>
@@ -90,6 +93,16 @@
                                             <button type="submit" class="btn btn-danger btn-sm"
                                                 onclick="return confirm('Do you want to delete this student?');"><i
                                                     class="bi bi-trash"></i> Delete</button>
+
+                                            @php
+                                                $birthday = \Carbon\Carbon::parse($student->birth);
+                                                $now = now();
+                                                $isBirthday = $birthday->isBirthday($now);
+                                            @endphp
+
+                                            @if ($isBirthday)
+                                                <a href="https://www.youtube.com/watch?v=MP1G8wnLpSM" target="_blank" class="text-white btn btn-dark btn-sm"><i class="bi bi-cake"></i> hoy cumple <i class="bi bi-cake"></i></a>
+                                            @endif
                                         </form>
                                     </td>
                                 </tr>

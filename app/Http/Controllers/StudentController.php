@@ -22,6 +22,7 @@ class StudentController extends Controller
             'students' => Student::latest()->paginate(5)
         ]);
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -36,10 +37,20 @@ class StudentController extends Controller
      */
     public function store(StoreStudentRequest $request) : RedirectResponse
     {
-        $data = $request->except('_token');
+        $birth = $request->input('birth');
+        $now = now();
+        $age = $now->diffInYears($birth);
+        /* dd($age); */
+      
+        if ($age>=18) {
+            $data = $request->except('_token');
         Student::create($data);
         return redirect()->route('students.index')
                 ->withSuccess('New Student is added successfully.');
+        } else {
+            return redirect()->back()->with('message', "Error. The student is too young.");
+        }
+        
     }
 
     /**

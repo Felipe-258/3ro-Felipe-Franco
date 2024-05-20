@@ -58,6 +58,17 @@
                         </div>
 
                         <div class="mb-3 row">
+                            <label for="birth" class="col-md-4 col-form-label text-md-end text-start">birth</label>
+                            <div class="col-md-6">
+                                <input type="date" class="form-control @error('birth') is-invalid @enderror"
+                                    id="birth" name="birth" value="{{ $student->birth }}">
+                                @if ($errors->has('birth'))
+                                    <span class="text-danger">{{ $errors->first('birth') }}</span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
                             <label for="assist" class="col-md-4 col-form-label text-md-end text-start">assist</label>
                             <div class="col-md-6">
                                 <input type="number" step="0.01"
