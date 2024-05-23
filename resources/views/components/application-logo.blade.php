@@ -1,4 +1,4 @@
-<svg viewBox="0 0 374 414" xmlns="http://www.w3.org/2000/svg" {{ $attributes }}>
+{{-- <svg viewBox="0 0 374 414" xmlns="http://www.w3.org/2000/svg" {{ $attributes }}>
    version="1.1"
    width="374"
    height="414"
@@ -825,6 +825,6 @@
        d="m 200.5,448.5 c -20.452,-4.111 -40.452,-9.444 -60,-16 19.289,4.655 38.623,9.322 58,14 1.213,0.247 1.88,0.914 2,2 z"
        id="path88" />
   </g>
-</svg>
+</svg> --}}
 
-    {{-- <img src="logo.svg" width="216" height="216" alt=""> --}}
+    <img src="logo-1.png" width="96" height="96" alt="">

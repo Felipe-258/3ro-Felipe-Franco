@@ -3,12 +3,11 @@
 @section('content')
     <div class="row justify-content-center mt-3">
         <div class="col-md-12">
-
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success" role="alert">
-                    {{ $message }}
-                </div>
-            @endif
+            @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
 
             <div class="card">
                 <div class="card-header">Student List</div>
@@ -19,7 +18,7 @@
                                 class="bi bi-plus-circle"></i> Add New Student</a>
                         <a href="{{ route('assist.form') }}" class="btn btn-success btn-sm my-3"><i
                                 class="bi bi-plus-circle"></i> Add New Assist</a>
-                        <a href="{{ route('assist.form') }}" class="btn btn-success btn-sm my-3"><i
+                        <a href="{{ route('notes.create') }}" class="btn btn-success btn-sm my-3"><i
                                 class="bi bi-plus-circle"></i> Add New Note</a>
                         {{-- <div class="button">
                             <div class="separador"></div>

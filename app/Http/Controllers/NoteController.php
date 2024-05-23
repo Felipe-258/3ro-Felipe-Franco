@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Note;
+use Illuminate\Support\Facades\DB;
+use App\Models\Student;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -14,9 +16,17 @@ class NoteController extends Controller
      */
     public function index() : View
     {
+        /* $notes = Note::all();
+        $students = Student::all(); */
+        /* return ($notes); */
+        $notes = Note::with('student')->get();
         return view('notes.index', [
-            'notes' => Note::latest()->paginate(15)
+            'notes' => Note::latest()->paginate(10)/* ,
+            'student' => $students, */
         ]);
+        /* return view('notes.index', [
+            'notes' => Note::latest()->paginate(15)
+        ]); */
     }
 
     /**
@@ -24,7 +34,7 @@ class NoteController extends Controller
      */
     public function create()
     {
-        //
+        return view('notes.create');
     }
 
     /**
@@ -32,15 +42,32 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $note = $request->input('note');
+        /* dd($request->dni); */
+        /* $student = Student::find($request->dni); */
+        $student = DB::select('select * from students where dni = :dni', ['dni' => $request->dni]);
+        /* dd($student[0]->id); */
+        if ($note>=1) {
+            $newNote = new Note();
+            $newNote->student_id = $student[0]->id;
+            $newNote->note = $note;
+            $newNote->subject = $request->input('subject');
+            $newNote->save();
+            return redirect()->route('notes.index')
+                ->withSuccess('New Note is added successfully.');
+        } else {
+            return redirect()->back()->with('message', "Error. The Note is too low.");
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Note $note) : View
     {
-        //
+        return view('notes.show', [
+            'note' => $note
+        ]);
     }
 
     /**
@@ -62,8 +89,10 @@ class NoteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Note $note) : RedirectResponse
     {
-        //
+        $note->delete();
+        return redirect()->route('notes.index')
+                ->withSuccess('note is deleted successfully.');
     }
 }

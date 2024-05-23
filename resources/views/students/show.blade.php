@@ -53,6 +53,25 @@
                             {{ $student->assist }}
                         </div>
                     </div>
+                    <div class="row">
+                        <label for="notes"
+                            class="col-md-4 col-form-label text-md-end text-start"><strong>Notes:</strong></label>
+                        <div class="col-md-6" style="line-height: 35px;">
+                            @forelse ($notes as $note)
+                                <tr>
+                                    <td>{{ $note->note }}</td>
+                                    <td>{{ $note->subject }}</td>
+                                    <br>
+                                </tr>
+                            @empty
+                                <td colspan="6">
+                                    <span class="text-danger">
+                                        <strong>No student Found!</strong>
+                                    </span>
+                                </td>
+                            @endforelse
+                        </div>
+                    </div>
                     <br>
                     <div class="row">
                         <form action="{{ route('assistForm.store') }}" method="post">

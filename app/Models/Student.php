@@ -16,4 +16,9 @@ class Student extends Model
     {
         return $this->hasmany(Assist::class);
     }
+
+    public function notes()
+    {
+        return $this->hasmany(Note::class);
+    }
 }

@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\ParameterController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Log;
@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AssistController;
 use App\Http\Controllers\NoteController;
+
 use App\Http\Resources\Student;
 use App\Models\Assist;
 /*
@@ -48,7 +49,9 @@ Route::middleware('auth')->group(function () {
     Route::post('newAssistt', [AssistController::class, 'store'])->name('assistForm.store');
     Route::post('newAssist', [AssistController::class, 'search'])->name('assistForm.search');
     
-    
+    Route::get('parameter', [ParameterController::class, 'index'])->name('parameter.index');
+    Route::put('parameter.update', [ParameterController::class, 'update'])->name('parameter.update');
+
     Route::get('assist/{student}/student', [AssistController::class, 'show'])->name('assist.show');
     Route::get('details', [ProductController::class, 'details']);
     Route::get('outJson', [ProductController::class, 'outJson']);

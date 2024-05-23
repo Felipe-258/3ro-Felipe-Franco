@@ -23,7 +23,7 @@
                             <p style="color: {{ $color }}">
                                 Promedio: {{ $promedio }}%
                             </p>
-                            
+                            <p><strong>Total de clases:</strong> {{ $clases }}</p> 
                             {{-- <label for="assist" class="col-md-5 col-form-label text-md-end text-start"><strong>Condicion: {{ $total }} </strong> </label>  --}}
                             
                             <table class="table table-bordered table-hover" style="width: 200%">

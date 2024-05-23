@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use App\Models\Assist;
 use App\Http\Requests\StoreAssistRequest;
 use Illuminate\Http\Request;
@@ -29,20 +29,25 @@ class AssistController extends Controller
             ['student' => $student->id]
         );
     }
+
+    
     public function show(Student $student): View
     {
         $total = DB::table('assists')->where('student_id', $student->id)->count();
         $assists = DB::table('assists')->where('student_id', $student->id)->get();
-        $promedio = $total / 10;
-        $promedio = $promedio * 100;
+        $parameters = DB::table('parameters')->first();
+        $promedioCrudo = $total / $parameters->total;
+        $promedioCrudo = $promedioCrudo * 100;
+        $promedio = round($promedioCrudo, 3); // Truncamos a tres dígitos después de la coma
         $color = '';
-        if ($promedio < 60) {
+        
+        if ($promedio < $parameters->regular) {
             $color = 'red';
         }
-        if ($promedio >= 60 && $promedio < 80) {
+        if ($promedio >= ($parameters->regular) && $promedio < ($parameters->promocion)) {
             $color = 'blue';
         }
-        if ($promedio >= 80) {
+        if ($promedio >= $parameters->promocion) {
             $color = 'green';
         }
         /* dd($assists); */
@@ -52,8 +57,10 @@ class AssistController extends Controller
             'total' => $total,
             'promedio' => $promedio,
             'color' => $color,
-            'assists' => $assists
+            'assists' => $assists,
+            'clases' => $parameters->total,
         ]);
+
     }
     public function store(Request $request)
     {

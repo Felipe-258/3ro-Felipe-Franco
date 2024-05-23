@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use App\Models\Assist;
+use App\Models\Note;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreStudentRequest;
@@ -19,8 +20,9 @@ class StudentController extends Controller
     public function index() : View
     {
         return view('students.index', [
-            'students' => Student::latest()->paginate(5)
+            'students' => Student::latest()->paginate(10)
         ]);
+        
     }
     
 
@@ -58,9 +60,19 @@ class StudentController extends Controller
      */
     public function show(Student $student) : View
 {
-    return view('students.show', [
+   /*  return view('students.show', [
         'student' => $student
-    ]);
+    ]); */
+    /* dd($student->id); */
+    /* $student = Student::with('notes')->get(); */
+    $student = Student::where('id', $student->id)->first();
+    /* $notes = Note::where('student_id', $student->id); */
+    $notes = DB::select("SELECT note, subject FROM notes where student_id=$student->id");
+    /* dd($notes); */
+        return view('students.show', [
+            'student' => $student,
+            'notes' => $notes,
+        ]);
 }
 
     /**
@@ -81,6 +93,7 @@ class StudentController extends Controller
     {
         $data = $request->except('_token');
         $student->update($data);
+        dd($student);
         return redirect()->back()
                 ->withSuccess('Student is updated successfully.');
     }
