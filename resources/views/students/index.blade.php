@@ -61,6 +61,7 @@
                                 <th scope="col">DNI</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Surname</th>
+                                <th scope="col">Year</th>
                                 <th scope="col">Assist</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -72,6 +73,20 @@
                                     <td>{{ $student->dni }}</td>
                                     <td>{{ $student->name }}</td>
                                     <td>{{ $student->surname }}</td>
+                                    {{-- <td>
+                                        {{ $student->year }}
+                                        @switch($student->year)
+                                            @case(2)
+                                                {{ 'do' }}
+                                                @break
+                                            @case(3)
+                                                {{ 'ro' }}
+                                                @break
+                                            @default
+                                        @endswitch
+                                    </td> --}}
+                                    <td>{{ $student->year . ($student->year == 2 ? 'do' : ($student->year == 3 ? 'ro' : '')) }}</td>
+                                    
                                     <td>{{ $student->assist }}</td>
                                     <td>
                                         <form action="{{ route('students.destroy', $student->id) }}" method="post">

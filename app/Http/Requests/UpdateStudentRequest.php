@@ -27,6 +27,7 @@ class UpdateStudentRequest extends FormRequest
             'surname' => 'required|string|max:250',
             'birth'=> 'required',
             'assist' => 'required|min:1',
+            'year'=> 'required',
         ];
     }
 }

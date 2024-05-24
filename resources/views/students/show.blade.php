@@ -40,6 +40,14 @@
                     </div>
 
                     <div class="row">
+                        <label for="year"
+                            class="col-md-4 col-form-label text-md-end text-start"><strong>year:</strong></label>
+                        <div class="col-md-6" style="line-height: 35px;">
+                            {{ $student->year . ($student->year == 2 ? 'do' : ($student->year == 3 ? 'ro' : '')) }}
+                        </div>
+                    </div>
+
+                    <div class="row">
                         <label for="birth"
                             class="col-md-4 col-form-label text-md-end text-start"><strong>birth:</strong></label>
                         <div class="col-md-6" style="line-height: 35px;">
@@ -66,7 +74,7 @@
                             @empty
                                 <td colspan="6">
                                     <span class="text-danger">
-                                        <strong>No student Found!</strong>
+                                        <strong>No notes found!</strong>
                                     </span>
                                 </td>
                             @endforelse

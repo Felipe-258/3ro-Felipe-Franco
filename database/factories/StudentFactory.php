@@ -22,6 +22,7 @@ class StudentFactory extends Factory
             "surname"=> $this->faker->lastName(),
             "birth"=> $this->faker->date(),
             "assist"=>$this->faker->numberBetween(0,0),
+            "year"=>$this->faker->numberBetween(2,3),
         ];
     }
 }

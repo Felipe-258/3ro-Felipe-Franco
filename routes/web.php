@@ -57,6 +57,9 @@ Route::middleware('auth')->group(function () {
     Route::get('outJson', [ProductController::class, 'outJson']);
     Route::get('assistance', [ProductController::class, 'assistance']);
     Route::post('insertProduct', [ProductController::class, 'insertProduct']);
+
+/*     Route::get('/exportar-pdf', [PDFController::class, 'exportarPDF']); */
+
 });
 // https://kinsta.com/es/blog/laravel-breeze/
 require __DIR__ . '/auth.php';

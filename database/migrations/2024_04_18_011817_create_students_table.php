@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('surname');
             $table->date('birth');
             $table->integer('assist');
+            $table->integer('year');
             $table->timestamps();
         });
     }

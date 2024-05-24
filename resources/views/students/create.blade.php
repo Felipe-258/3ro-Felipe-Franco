@@ -57,7 +57,20 @@
                             @endif
                         </div>
                     </div>
-                    
+
+                    <div class="mb-3 row">
+                        <label for="Google Maps" class="col-md-4 col-form-label text-md-end text-start"><Tarea></Tarea>Year</label>
+                        <div class="col-md-6">
+                          <select name="year" id="year" class="form-select">
+                            <option value="3"selected>3ro</option>
+                            <option value="2" >2do</option>
+                          </select>
+                            @if ($errors->has('year'))
+                                <span class="text-danger">{{ $errors->first('year') }}</span>
+                            @endif
+                        </div>
+                    </div> 
+
                     <div class="mb-3 row">
                         <label for="assist" class="col-md-4 col-form-label text-md-end text-start">assist</label>
                         <div class="col-md-6">
