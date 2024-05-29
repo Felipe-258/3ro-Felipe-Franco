@@ -7,7 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AssistController;
 use App\Http\Controllers\NoteController;
-
+use App\Http\Controllers\PDFController;
 use App\Http\Resources\Student;
 use App\Models\Assist;
 /*
@@ -58,7 +58,7 @@ Route::middleware('auth')->group(function () {
     Route::get('assistance', [ProductController::class, 'assistance']);
     Route::post('insertProduct', [ProductController::class, 'insertProduct']);
 
-/*     Route::get('/exportar-pdf', [PDFController::class, 'exportarPDF']); */
+    Route::get('/exportar-pdf', [PDFController::class, 'exportarPDF']);
 
 });
 // https://kinsta.com/es/blog/laravel-breeze/

@@ -95,9 +95,14 @@
                                 Assist</button>
                             {{-- <input type="submit" class="col-md-3 offset-md-5 btn btn-primary" value="Add Assist"> --}}
                         </div>
+                    </form>
+                    <form action="{{ url('/exportar-pdf') }}" method="GET" target="_blank">
+                        <input type="hidden" name="id" id="id" value="{{ $student->dni }}">
+                        <button type="submit" class="col-md-6 offset-md-3 btn btn-danger">Exportar a PDF</button>
+                    </form>
                     </div>
                 </div>
-
+                
             </div>
 
 

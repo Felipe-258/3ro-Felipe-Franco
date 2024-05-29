@@ -89,36 +89,47 @@
                                     
                                     <td>{{ $student->assist }}</td>
                                     <td>
-                                        <form action="{{ route('students.destroy', $student->id) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-
-
-                                            <a href="{{ route('assist.show', $student->id) }}"
-                                                class="btn btn-success btn-sm"><i class="bi bi-journal-text"></i>
-                                                Assists</a>
-
-                                            <a href="{{ route('students.show', $student->id) }}"
-                                                class="btn btn-warning btn-sm"><i class="bi bi-eye"></i> Show</a>
-
-                                            <a href="{{ route('students.edit', $student->id) }}"
-                                                class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
-
-                                            <button type="submit" class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Do you want to delete this student?');"><i
-                                                    class="bi bi-trash"></i> Delete</button>
-
-                                            @php
-                                                $birthday = \Carbon\Carbon::parse($student->birth);
-                                                $now = now();
-                                                $isBirthday = $birthday->isBirthday($now);
-                                            @endphp
-
-                                            @if ($isBirthday)
-                                                <a href="https://www.youtube.com/watch?v=MP1G8wnLpSM" target="_blank" class="text-white btn btn-dark btn-sm"><i class="bi bi-cake"></i> hoy cumple <i class="bi bi-cake"></i></a>
-                                            @endif
-                                        </form>
+                                        <div style="display: inline-block;">
+                                            <form action="{{ route('students.destroy', $student->id) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                    
+                                                <a href="{{ route('assist.show', $student->id) }}" class="btn btn-success btn-sm">
+                                                    <i class="bi bi-journal-text"></i> Assists
+                                                </a>
+                                    
+                                                <a href="{{ route('students.show', $student->id) }}" class="btn btn-warning btn-sm">
+                                                    <i class="bi bi-eye"></i> Show
+                                                </a>
+                                    
+                                                <a href="{{ route('students.edit', $student->id) }}" class="btn btn-primary btn-sm">
+                                                    <i class="bi bi-pencil-square"></i> Edit
+                                                </a>
+                                    
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete this student?');">
+                                                    <i class="bi bi-trash"></i> Delete
+                                                </button>
+                                            </form>
+                                        </div>
+                                        <div style="display: inline-block;">
+                                            <form action="{{ url('/exportar-pdf') }}" method="GET" target="_blank">
+                                                <input type="hidden" name="id" id="id" value="{{ $student->dni }}">
+                                                <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-file-earmark-pdf-fill"></i> PDF</button>
+                                            </form>
+                                        </div>
+                                        @php
+                                            $birthday = \Carbon\Carbon::parse($student->birth);
+                                            $now = now();
+                                            $isBirthday = $birthday->isBirthday($now);
+                                        @endphp
+                                    
+                                        @if ($isBirthday)
+                                            <a href="https://www.youtube.com/watch?v=MP1G8wnLpSM" target="_blank" class="text-white btn btn-dark btn-sm">
+                                                <i class="bi bi-cake"></i> hoy cumple <i class="bi bi-cake"></i>
+                                            </a>
+                                        @endif
                                     </td>
+                                    
                                 </tr>
                             @empty
                                 <td colspan="6">
