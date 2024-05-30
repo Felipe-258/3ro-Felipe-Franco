@@ -39,6 +39,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('products', ProductController::class);
+    Route::get('students/filter', [StudentController::class, 'filter'])->name('students.filter'); // Cambiado aquí
+    Route::get('students/clear-filters', [StudentController::class, 'clearFilters'])->name('students.clearFilters');
     Route::resource('students', StudentController::class);
     Route::resource('notes', NoteController::class);
 
@@ -59,6 +61,7 @@ Route::middleware('auth')->group(function () {
     Route::post('insertProduct', [ProductController::class, 'insertProduct']);
 
     Route::get('/exportar-pdf', [PDFController::class, 'exportarPDF']);
+    
 
 });
 // https://kinsta.com/es/blog/laravel-breeze/

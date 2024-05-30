@@ -10,8 +10,8 @@ use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use Illuminate\Support\Facades\DB;
-
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 class StudentController extends Controller
 {
     /**
@@ -25,7 +25,46 @@ class StudentController extends Controller
         
     }
     
-
+    public function filter(Request $request) {
+        $query = Student::query();
+    
+        if ($request->has('dni') && !empty($request->dni)) {
+            $query->where('dni', $request->dni);
+            Session::put('dni', $request->dni);
+        } else {
+            Session::forget('dni'); // Limpiar la sesión si el valor está vacío
+        }
+    
+        if ($request->has('name') && !empty($request->name)) {
+            $query->where('name', 'like', '%' . $request->name . '%');
+            Session::put('name', $request->name);
+        } else {
+            Session::forget('name'); // Limpiar la sesión si el valor está vacío
+        }
+    
+        if ($request->has('surname') && !empty($request->surname)) {
+            $query->where('surname', 'like', '%' . $request->surname . '%');
+            Session::put('surname', $request->surname);
+        } else {
+            Session::forget('surname'); // Limpiar la sesión si el valor está vacío
+        }
+    
+        if ($request->has('year') && !empty($request->year)) {
+            $query->where('year', $request->year);
+            Session::put('year', $request->year);
+            
+        } else {
+            Session::forget('year'); // Limpiar la sesión si el valor está vacío
+        }
+        
+        $students = $query->paginate(10);
+        return view('students.index', compact('students'));
+    }
+    public function clearFilters()
+{
+    Session::forget(['dni', 'name', 'surname', 'year']); // Limpiar todos los filtros de la sesión
+    return redirect()->route('students.index'); // Redirigir de nuevo a la página principal
+}
     /**
      * Show the form for creating a new resource.
      */
