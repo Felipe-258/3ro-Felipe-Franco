@@ -1,22 +1,22 @@
-# Simple Laravel 10 CRUD Application Tutorial
-Learn how to develop a simple Laravel 10 CRUD application
-
-> The complete tutorial step by step guide is available on my blog. [Laravel 10 CRUD Application](https://www.allphptricks.com/simple-laravel-10-crud-application/)
-
-## Blog
-https://www.allphptricks.com/
-
 
 ## Installation 
-Make sure that you have setup the environment properly. You will need minimum PHP 8.1, MySQL/MariaDB, and composer.
+Asegurate de tener tu entorno de desarrollo establecido. Para ejecutar este proyecto necesitaras
+    PHP 8.1
+    MySQL/MariaDB
+    composer.
 
-1. Download the project (or clone using GIT)
-2. Copy `.env.example` into `.env` and configure your database credentials
-3. Go to the project's root directory using terminal window/command prompt
-4. Run `composer install`
-5. Set the application key by running `php artisan key:generate --ansi`
-6. Run migrations `php artisan migrate` y `php artisan migrate:refresh --seed`
-7. 'php dumpautoload' u 'php artisan optimize'
-Start local server by executing `php artisan serve`
-8. Visit here [http://127.0.0.1:8000/] to test the application
-9. 
+1. Descargar o clonar el proyecto
+2. Pegar la carpeta en tu www, si tenes laragon o htdocs si usas XAMPP
+3. Copiar tu propio '.env' si tenes uno, o renombrar el '.env.example' a '.env'
+4. Ahora tenes que abrir la consola el directorio
+5. Ejecutar:
+    1. 'composer install'
+    2. 'php artisan key:generate --ansi'
+    3. 'php artisan migrate'
+    4. 'php artisan migrate:refresh --seed'
+    5. 'npm install'
+    6. 'npm run dev'
+    7. 'php dumpautoload'
+    8. 'php artisan optimize'
+6. Ahora solo queda ejecutar el 'php artisan serve'
+7. El sistema se iniciaria en 'http://127.0.0.1:8000/'
