@@ -8,6 +8,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AssistController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\LogController;
 use App\Http\Resources\Student;
 use App\Models\Assist;
 /*
@@ -39,15 +40,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('products', ProductController::class);
-    Route::get('students/filter', [StudentController::class, 'filter'])->name('students.filter'); // Cambiado aquí
+    Route::get('students/filter', [StudentController::class, 'filter'])->name('students.filter');
     Route::get('students/clear-filters', [StudentController::class, 'clearFilters'])->name('students.clearFilters');
     Route::resource('students', StudentController::class);
     Route::resource('notes', NoteController::class);
-
+    
     Route::get('addAssist', function () {
         return view('students.addAssistForm');
     })->name('assist.form');
-
+    Route::get('log', [LogController::class, 'logIndex'])->name('students.log');
     Route::post('newAssistt', [AssistController::class, 'store'])->name('assistForm.store');
     Route::post('newAssist', [AssistController::class, 'search'])->name('assistForm.search');
     

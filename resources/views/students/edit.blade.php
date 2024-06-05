@@ -68,6 +68,14 @@
                             </div>
                         </div>
 
+                        <div class="form-group col-md-2">
+                            <select name="year" id="year" class="form-control">
+                                
+                                <option value="3" >3ro</option>
+                                <option value="2" >2do</option>
+                            </select>
+                        </div>
+
                         <div class="mb-3 row">
                             <label for="assist" class="col-md-4 col-form-label text-md-end text-start">assist</label>
                             <div class="col-md-6">
@@ -75,11 +83,10 @@
                                     class="form-control @error('assist') is-invalid @enderror" id="assist" name="assist"
                                     value="{{ $student->assist }}">
                                 @if ($errors->has('assist'))
-                                    <span class="text-danger">{{ $errors->first('price') }}</span>
+                                    <span class="text-danger">{{ $errors->first('assist') }}</span>
                                 @endif
                             </div>
                         </div>
-
 
                         <div class="mb-3 row">
                             <input type="submit" class="col-md-3 offset-md-5 btn btn-primary" value="Update">

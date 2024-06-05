@@ -27,6 +27,11 @@
                     <x-nav-link :href="route('parameter.index')" :active="request()->routeIs('parameter.index')">
                         {{ __('Parameters') }}
                     </x-nav-link>
+                    @if (auth()->user()->role === 1)
+                        <x-nav-link :href="route('students.log')" :active="request()->routeIs('students.log')">
+                            {{ __('Students Log') }}
+                        </x-nav-link>
+                    @endif
                 </div>
 
                 <!-- Settings Dropdown -->
