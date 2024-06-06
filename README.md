@@ -19,4 +19,5 @@ Asegurate de tener tu entorno de desarrollo establecido. Para ejecutar este proy
     7. 'php dumpautoload'
     8. 'php artisan optimize'
 6. Ahora solo queda ejecutar el 'php artisan serve'
-7. El sistema se iniciaria en 'http://127.0.0.1:8000/'
+7. Ya existe una cuenta con la funcion de admistrador con las credenciales "admin@admin.com" "12345678", pero te podes crear una cuenta por tu parte. La cual no tendra el rol admin.
+8. El sistema se iniciaria en 'http://127.0.0.1:8000/'

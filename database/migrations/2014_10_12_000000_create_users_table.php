@@ -21,6 +21,16 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        // Inserta la fila por defecto
+        DB::table('users')->insert([
+            'name' => 'Admin',
+            'email'=> 'admin@admin.com',
+            'password' => '$2y$10$/KvZ4T//TM4ybmrjWIQDiOok9M8zUsPPGuam2gOwM674M70E84pPq',
+            'role'=> '1',
+            'created_at' => now(),
+            'updated_at'=> now(),
+        ]);
     }
 
     /**
