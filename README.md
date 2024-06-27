@@ -1,23 +1,40 @@
+![Tiro Libre Logo](public/logos/logo tiro-libre square.png.png)
 
-## Installation 
-Asegurate de tener tu entorno de desarrollo establecido. Para ejecutar este proyecto necesitaras
-    PHP 8.1
-    MySQL/MariaDB
-    composer.
+# Tiro Libre
 
-1. Descargar o clonar el proyecto
-2. Pegar la carpeta en tu www, si tenes laragon o htdocs si usas XAMPP
-3. Copiar tu propio '.env' si tenes uno, o renombrar el '.env.example' a '.env'
-4. Ahora tenes que abrir la consola el directorio
-5. Ejecutar:
-    1. 'composer install'
-    2. 'php artisan key:generate --ansi'
-    3. 'php artisan migrate'
-    4. 'php artisan migrate:refresh --seed'
-    5. 'npm install'
-    6. 'npm run dev'
-    7. 'php dumpautoload'
-    8. 'php artisan optimize'
-6. Ahora solo queda ejecutar el 'php artisan serve'
-7. Ya existe una cuenta con la funcion de admistrador con las credenciales "admin@admin.com" "12345678", pero te podes crear una cuenta por tu parte. La cual no tendra el rol admin.
-8. El sistema se iniciaria en 'http://127.0.0.1:8000/'
+Tiro Libre es una plataforma para alquilar canchas. Aquí, los cancheros publican sus canchas y los jugadores pueden buscar las mejores opciones para disfrutar con amigos, cuidar el bolsillo, salvar las distancias e incluso crear salas para encontrar nuevos jugadores y formar un equipo ganador. El programa permite tener distintos roles:
+
+- **Jugador**: Puede alquilar, buscar canchas y armar salas para buscar jugadores.
+- **Canchero**: Puede publicar y promocionar su cancha, proporcionando información como ubicación, precio y número de teléfono.
+- **Administrador**: Capaz de modificar o cambiar aspectos críticos del sistema.
+- **Super Administrador**: Capaz de designar los roles de administrador.
+
+## Versiones
+
+- **Laragon Full**: 6.0 220916
+- **PHP**: 8.1.10
+- **MySQL**: 8.0.30
+- **Apache**: 2.4.54
+- **Heidi Portable**: 12.1.0.6537
+
+# Instalación de Tiro Libre
+
+Para probar el proyecto de manera local, se debe tener instalado Laragon 6.0 y que las demás versiones coincidan para no tener inconvenientes.
+
+1. Descargar o clonar el proyecto.
+2. Copiar la carpeta `Reserva-Futbolera`.
+3. Renombrar el archivo `.env.example` a `.env` y modificarlo si es necesario.
+4. Usando la terminal y teniendo `composer` instalado, navegar hasta el directorio.
+5. Ejecutar `composer install` (tomará un momento).
+6. Ejecutar `npm install`.
+7. Generar una 'application key' con `php artisan key:generate --ansi`.
+8. Ejecutar las migraciones con `php artisan migrate`.
+    - Opcional: si quieres tener datos de prueba, ejecutar `php artisan migrate:refresh --seed`.
+9. Ejecutar `npm run dev`.
+10. Por último, iniciar el servidor local:
+    - Recomendamos hacerlo mediante el menú de Laragon:
+        - Menú
+        - WWW
+        - Reserva-Futbolera [http://reserva-futbolera.test]
+    - También se puede iniciar escribiendo `php artisan serve`:
+        - Con esto deberías abrir [http://127.0.0.1:8000].
