@@ -1,4 +1,4 @@
-![Tiro Libre Logo](public/logos/logo tiro-libre square.png)
+![Tiro Libre Logo](public/logos/tiro-libre-square.png)
 # Tiro Libre
 
 Tiro Libre es una plataforma para alquilar canchas. Aquí, los cancheros publican sus canchas y los jugadores pueden buscar las mejores opciones para disfrutar con amigos, cuidar el bolsillo, salvar las distancias e incluso crear salas para encontrar nuevos jugadores y formar un equipo ganador. El programa permite tener distintos roles:
